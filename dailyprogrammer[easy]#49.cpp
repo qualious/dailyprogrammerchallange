@@ -28,9 +28,10 @@ what is behind each door.
 int
 main(void){
     srand(time(NULL));
-    cout << "Not switched : ";
+    cout << "OUT OF 1000 TEST \n------------------------ \n";
+    cout << "Stayer won: ";
     size_t count = 0;
-    for(unsigned int i = 0; i < 100; ++i){
+    for(unsigned int i = 0; i < 1000; ++i){
         size_t door1 = rand()%2;                                  //car or goat
         size_t door2 = ((door1 == goat) ? rand()%2 : goat);      //if door1 is goat, random; else goat
         size_t door3 = ((door2 == goat) ? ((door1 == goat) ? car : goat) : goat);
@@ -38,11 +39,11 @@ main(void){
         if(door2 == car)
             count++;                                            //counting the ones that we won
     }
-    cout << count << endl;
-    cout << "Switched : ";
+    cout << count << " times." << endl;
+    cout << "Switcher won: ";
     count = 0;
     size_t notWonCount = 0;
-    for(unsigned int i = 0; i < 100; ++i){
+    for(unsigned int i = 0; i < 1000; ++i){
         size_t door1 = rand()%2;                                 //car or goat
         size_t door2 = ((door1 == goat) ? rand()%2 : goat);      //if door1 is goat, random; else goat
         size_t door3 = ((door2 == goat) ? ((door1 == goat) ? car : goat) : goat);
@@ -62,5 +63,5 @@ main(void){
                 count++;
         }
     }
-    cout << count - notWonCount << endl;
+    cout << count - notWonCount << " times." << endl;
 }
