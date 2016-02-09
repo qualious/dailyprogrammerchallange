@@ -15,7 +15,6 @@ using namespace std;
 int
 main(void){
         size_t C = 200;
-        char flag;
         vector<size_t> v = {150,24,79,50,88,345,3};   //1,4
         for (size_t i = 0; i < v.size(); ++i) {
                 if(v[i] > C) {
