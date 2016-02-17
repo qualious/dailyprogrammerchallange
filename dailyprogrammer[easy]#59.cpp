@@ -14,7 +14,7 @@ using namespace std;
    the point of this problem is to write the program yourself, so you are not
    allowed to use functions like this!
  */
-int
+ptrdiff_t
 findS(string s1, string s2){
     for (size_t i = 0; i + s2.length() < s1.length(); ++i) {
         string sub = s1.substr(i, s2.length());
@@ -27,6 +27,6 @@ findS(string s1, string s2){
 int
 main(void){
     string s1 = "Double, double, toil and trouble", s2 = "il an";
-    int pos = findS(s1,s2);
+    ptrdiff_t pos = findS(s1,s2);
     cout << pos << endl;
 }
