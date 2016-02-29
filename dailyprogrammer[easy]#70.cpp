@@ -5,7 +5,7 @@
 using namespace std;
 /*
    Write a program that takes a filename and a parameter n and prints the n most
-   common words in the file, and the count of their occurrences, in descending order.
+   common words in the file, and the count of their occurrences.
  */
 //WHERE IS THE PYTHON DIRECTIONARIES WHEN YOU NEED THEM
 int
