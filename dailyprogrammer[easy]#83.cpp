@@ -25,21 +25,21 @@ using namespace std;
 void
 printSSNString(size_t hm){
     static size_t i = hm;
-    vector<string> ssn = {"and","thousand", "million", "billion", "trillion", "quadrillion", "quintillion", "sextillion"};
+    vector<string> ssn = {"thousand", "million", "billion", "trillion", "quadrillion", "quintillion", "sextillion"};
     cout << ssn[i--] << " ";
 }
 
 void
 printLSNString(size_t hm){
     static size_t i = hm;
-    vector<string> lsn = {"and","thousand", "million", "milliard", "billion", "billiard", "trillion", "trilliard"};
+    vector<string> lsn = {"thousand", "million", "milliard", "billion", "billiard", "trillion", "trilliard"};
     cout << lsn[i--] << " ";
 }
 
 void
 printSSN(string num){
     size_t remaning = num.length()%3;
-    size_t hm = num.length()/3 -1;
+    size_t hm = num.length()/3-1;
     for (size_t j = 0; j < remaning; ++j) {
         cout << num[j] << " ";
     }
