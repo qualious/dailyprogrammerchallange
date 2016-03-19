@@ -1,5 +1,5 @@
 #include <iostream>
-#include <map>
+#include <algorithm>
 using namespace std;
 /*
    Run-Length encoding is a simple form of compression that
@@ -13,16 +13,20 @@ using namespace std;
 */
 int
 main(void){
-    string s = "Heeeeelllllooooo nurse!";
-    size_t zip[10] = {0}, j=0;
+    string s = "Heeeeelllllooooo nurse";
+    size_t zip[s.length()] = {0}, j=0;
     char prevChar = ' ';
     for(size_t i = 0; i < s.length(); ++i){
         if(s[i] == prevChar){
-            ++zip[j];
+            zip[j] = zip[j] + 1;
         }else{
             ++j;
-            ++zip[j];
+            zip[j] = zip[j] + 1;
         }
         prevChar = s[i];
+    }
+    s.erase(std::unique(s.begin(), s.end()), s.end());
+    for (size_t i = 0; i < s.length(); i++) {
+        cout << zip[i+1] << " " << s[i] << endl;
     }
 }
