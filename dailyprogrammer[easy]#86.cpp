@@ -18,10 +18,10 @@ main(void){
     char prevChar = ' ';
     for(size_t i = 0; i < s.length(); ++i){
         if(s[i] == prevChar){
-            zip[j] = zip[j] + 1;
+            ++zip[j];
         }else{
             ++j;
-            zip[j] = zip[j] + 1;
+            ++zip[j];
         }
         prevChar = s[i];
     }
