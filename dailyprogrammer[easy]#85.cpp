@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <numeric>
 using namespace std;
 /*
    Write a program that reads a matrix of numbers separated by newlines and
@@ -58,26 +60,89 @@ using namespace std;
  */
 
 void
-print(vector<size_t> v){
-    for(auto x: v)
-        cout << x << " ";
+print(size_t v[3][4], size_t index){
+    for(size_t i = 0; i < 4; ++i)
+        cout << v[index][i] << " ";
+    cout << endl;
+}
+
+void
+print(size_t v[4][3], size_t index){
+    for(size_t i = 0; i < 3; ++i)
+        cout << v[index][i] << " ";
     cout << endl;
 }
 
 int
+returnIndexofMax(int* sum,int maxSum){
+    for (size_t i = 0; i < 4; ++i) {
+        if(sum[i] == maxSum)
+            return i;
+    }
+    return -1;
+}
+
+void
+printAccordingToRowSum(size_t v[3][4]){
+    int sum[3];
+    for (int i = 0; i<3; i++){
+        sum[i] = accumulate(begin(v[i]), end(v[i]), 0);
+    }
+    for (size_t i = 0; i < 3; ++i) {
+        int maxSum = 0;
+        for (size_t j = 0; j < 3; j++) {
+            maxSum = max(sum[j], maxSum);
+        }
+        int index = returnIndexofMax(sum,maxSum);
+        sum[index] = 0;
+        print(v,index);
+    }
+}
+
+size_t **
+transpose(size_t matrix[3][4], int rows, int columns){
+    size_t ** trans;
+    trans = new size_t *[columns];
+    for(int i=0;i<columns;i++){
+        trans[i]=new size_t[rows];
+        for(int j=0;j<rows;j++)
+            trans[i][j]=matrix[j][i];
+    }
+    return trans;
+    for(int i=0;i<columns;i++)
+        delete[] trans[i];
+    delete[] trans;
+}
+
+void
+printAccordingToColumnSum(size_t** v){
+    size_t v1[4][3];
+    for (size_t i = 0; i < 4; i++) {
+        for (size_t j = 0; j < 3; j++) {
+            v1[i][j] = v[i][j];
+        }
+    }
+    int sum[4];
+    for (int i = 0; i<4; i++){
+        sum[i] = accumulate(begin(v1[i]), end(v1[i]), 0);
+    }
+    for (size_t i = 0; i < 4; ++i) {
+        int maxSum = 0;
+        for (size_t j = 0; j < 4; j++) {
+            maxSum = max(sum[j], maxSum);
+        }
+        int index = returnIndexofMax(sum,maxSum);
+        sum[index] = 0;
+        print(v1,index);
+    }
+    cout << "Last one is transpose of the solution" << endl;
+}
+
+
+int
 main(void){
-    vector<size_t> r1 = {10, 5, 4, 20}, r2 = {9, 33, 27, 16},r3 = {11, 6, 55, 3};
-    size_t rows[3] = {0,0,0}, columns[3] = {0,0,0};
-    for (size_t i = 0; i < r1.size(); i++) {        //rows
-        rows[0] += r1[i];
-        rows[1] += r2[i];
-        rows[2] += r3[i];
-    }
-    for (size_t i = 0; i < r1.size(); i++) {        //columns
-        columns[i] = r1[i] + r2[i] + r3[i];
-    }
-    cout << rows[0] << rows[1] << rows[2] << endl;
-    cout << columns[0] << columns[1] << columns[2] << columns[3] << endl;
-    // print(rows);
-    // print(columns);
+    size_t v[3][4] = {{10, 5, 4, 20}, {9, 33, 27, 16}, {11, 6, 55, 3}};
+    printAccordingToRowSum(v);
+    cout << endl << endl;
+    printAccordingToColumnSum(transpose(v,3,4));
 }
