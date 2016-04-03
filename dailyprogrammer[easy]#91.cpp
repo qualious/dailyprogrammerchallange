@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unistd.h>
 using namespace std;
 /*
 An anonymous user on world4ch's programming text board posted a thread in
@@ -28,7 +29,18 @@ Your task is to re-implement sleep sort in a language of your choice (which
 might look trivial, but this challenge is all about learning how your
 language handles multithreading.)
 */
-int
-main(void){
+void sleepsort(char c){
+    size_t i = static_cast<size_t>(c);
+    sleep(i);
+    cout << i << endl;
+}
 
+int
+main(int argc,char ** argv){
+    string s(argv[1]);
+    size_t i = 0;
+    while(s[i]){
+        sleepsort(s[i]);
+        ++i;
+    }
 }
