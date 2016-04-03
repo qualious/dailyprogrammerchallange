@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <unistd.h>
 using namespace std;
 /*
@@ -29,18 +30,28 @@ Your task is to re-implement sleep sort in a language of your choice (which
 might look trivial, but this challenge is all about learning how your
 language handles multithreading.)
 */
-void sleepsort(char c){
-    size_t i = static_cast<size_t>(c);
-    sleep(i);
-    cout << i << endl;
-}
 
 int
-main(int argc,char ** argv){
+main(int argc, char** argv){
     string s(argv[1]);
-    size_t i = 0;
-    while(s[i]){
-        sleepsort(s[i]);
-        ++i;
+    vector<size_t> v;
+    for (size_t i = 0; i < s.length(); ++i) {
+        v.push_back(s[i] - '0');       //fetch argv
     }
+    size_t largest = 0;
+
+    for(unsigned int i = 0; i < v.size(); ++i){
+        if (largest < v[i])
+            largest = v[i];
+        ptrdiff_t pid;
+        // pid = fork();                //we should handle errors
+        if ((pid = fork()) < 0)         //fork for creating child process
+            cout << "Error. Child process can't initiated" << endl;
+        if (pid == 0){
+            sleep(v[i]);                //sleep for d[i]
+            cout << v[i] << endl;
+            return 0;                   //exit after child created
+        }
+    }
+    sleep(largest);
 }
