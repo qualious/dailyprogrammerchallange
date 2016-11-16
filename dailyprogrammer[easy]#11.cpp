@@ -8,22 +8,8 @@ program should compute the day of the week that date will fall on.
 */
 string
 days(int dayOfWeek){
-    switch(dayOfWeek){
-        case 1:
-            return "Monday";
-        case 2:
-            return "Tuesday";
-        case 3:
-            return "Wednesday";
-        case 4:
-            return "Thursday";
-        case 5:
-            return "Friday";
-        case 6:
-            return "Saturday";
-        case 7:
-            return "Sunday";
-    }
+    size_t days[8] = {" ", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"}
+    return days[dayOfWeek];
 }
 
 int 
