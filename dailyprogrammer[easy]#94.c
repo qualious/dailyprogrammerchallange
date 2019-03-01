@@ -3,6 +3,13 @@
 #include <ctype.h>
 #include <string.h>
 
+/*
+Given a string as input, output every possible such modification
+with the element symbol enclosed in brackets and capitalized. 
+The elements can appear anywhere in the string, but you must 
+only highlight one element per line.
+*/
+
 const char* symbols[119] = {	
 			"Ac","Ag","Al","Am","Ar","As","At","Au","B","Ba","Be","Bh","Bi",
        	   	"Bk","Br","C","Ca","Cd","Ce","Cf","Cl","Cm","Cn","Co","Cr","Cs",
